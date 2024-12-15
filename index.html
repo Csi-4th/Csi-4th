@@ -17,37 +17,37 @@
 
 body {
       margin: 0;
-      height: 100vh;
-  display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      
-}
-    
-    
+      padding: 0;
+      background-color: #000; /* خلفية سوداء */
+      position: relative;
+    }
     .fixed-image1 {
       position: fixed;
       top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
       width: 150px; /* عرض الصورة */
       height: auto; /* الحفاظ على النسبة */
+      z-index: 1; /* الطبقة السفلى للصورة */
     }
     .footer1 {
       position: fixed;
-      bottom: 10px;
+      top: 80px; /* يظهر تحت الصورة */
+      left: 50%;
+      transform: translateX(-50%);
       font-size: 14px; /* حجم النص */
+      z-index: 9999; /* فوق جميع الطبقات */
+      color: #fff; /* لون النص أبيض */
     }
     .footer1 a {
       text-decoration: none; /* إزالة الخط السفلي */
-      color: #fff; /* لون الرابط */
-      
+      color: #fff; /* لون النص أبيض */
       font-weight: bold;
-      z-index: 9999;
     }
     .footer1 a:hover {
-      color: #007bff; /* تغيير اللون عند التمرير */
+      color: #00bfff; /* لون مختلف عند التمرير */
     }
-  </style>
+</style>
 
 
 

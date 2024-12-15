@@ -13,7 +13,7 @@ const NEXT = document.querySelector('.gallery__next')
 const PREV = document.querySelector('.gallery__prev')
 
 const AUDIO = {
-  WHOOSH: new Audio('https://assets.codepen.io/605876/whoosh-two.mp3'),
+  WHOOSH: new Audio('https://assets.codepen.io/605876/whoosh-two.'),
 }
 
 AUDIO.WHOOSH.volume = 0.5

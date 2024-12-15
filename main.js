@@ -217,3 +217,50 @@ NEXT.addEventListener('click', () => {
 PREV.addEventListener('click', () => {
   SCRUB_TO(SCRUB.vars.totalTime - SPACING)
 })
+
+
+
+// مصفوفة تحتوي على البيانات الخاصة بالكروت
+const cardsData = [
+  { type: "CSI", title: "Almohsen", image: "IMG_1332.jpeg" },
+  { type: "Guide", title: "Mountain", image: "IMG_1332.jpeg" },
+  { type: "Planner", title: "Mountain", image: "IMG_1332.jpeg" },
+  { type: "Guide", title: "Mountain", image: "IMG_1332.jpeg" },
+  { type: "Planner", title: "Mountain", image: "IMG_1332.jpeg" }
+];
+
+// مرجع لعنصر القائمة في HTML
+const galleryContent = document.getElementById('galleryContent');
+
+// دالة لإنشاء كارت
+function createCard(card) {
+  return `
+    <li class="gallery__card card w-56 h-72 absolute">
+      <div class="card__card h-full w-full">
+        <div class="card__content bg-gray-800 overflow-hidden relative h-full w-full rounded-md font-sans">
+          <img class="card__image transform absolute h-full w-full inset-0 transform scale-110" src="${card.image}" alt="${card.title}" />
+          <div class="card__details absolute inset-0 pt-52 flex items-center justify-center flex-col">
+            <div class="card__type text-gray-300 top-0 uppercase text-xs p-0 w-full text-center">${card.type}</div>
+            <h2 class="card__title p-2 text-white font-black text-xl text-center w-full pb-12">${card.title}</h2>
+          </div>
+        </div>
+        <div class="card__overlay z-50 absolute h-full w-full inset-0"></div>
+      </div>
+      <div class="card__reflection absolute h-full w-full top-8 left-0 rounded-md overflow-hidden" aria-hidden="true">
+        <div class="card__content bg-gray-800 overflow-hidden relative h-full w-full rounded-md font-sans">
+          <img class="card__image transform absolute h-full w-full inset-0 transform scale-110" src="${card.image}" alt="${card.title}" />
+          <div class="card__details absolute inset-0 pt-52 flex items-center justify-center flex-col">
+            <div class="card__type text-gray-300 top-0 uppercase text-xs p-0 w-full text-center">${card.type}</div>
+            <h2 class="card__title p-2 text-white font-black text-xl text-center w-full pb-12">${card.title}</h2>
+          </div>
+        </div>
+        <div class="card__overlay z-50 absolute h-full w-full inset-0 card__overlay--reflection"></div>
+      </div>
+    </li>
+  `;
+}
+
+// إضافة الكروت إلى الصفحة
+cardsData.forEach(card => {
+  galleryContent.innerHTML += createCard(card);
+});

@@ -223,10 +223,10 @@ PREV.addEventListener('click', () => {
 // مصفوفة تحتوي على البيانات الخاصة بالكروت
 const cardsData = [
   { type: "CSI", title: "Almohsen", image: "IMG_1332.jpeg" },
-  { type: "Guide", title: "Mountain", image: "IMG_1332.jpeg" },
-  { type: "Planner", title: "Mountain", image: "IMG_1332.jpeg" },
-  { type: "Guide", title: "Mountain", image: "IMG_1332.jpeg" },
-  { type: "Planner", title: "Mountain", image: "IMG_1332.jpeg" }
+  { type: "Guide", title: "Mountain", image: "IMG_13326.jpeg" },
+  { type: "Planner", title: "Mountain", image: "IMG_81332.jpeg" },
+  { type: "Guide", title: "Mountain", image: "IMG_13329.jpeg" },
+  { type: "Planner", title: "Mountain", image: "IMG_133288.jpeg" }
 ];
 
 // مرجع لعنصر القائمة في HTML

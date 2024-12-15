@@ -232,35 +232,59 @@ const cardsData = [
 // مرجع لعنصر القائمة في HTML
 const galleryContent = document.getElementById('galleryContent');
 
-// دالة لإنشاء كارت
-function createCard(card) {
-  return `
-    <li class="gallery__card card w-56 h-72 absolute">
-      <div class="card__card h-full w-full">
-        <div class="card__content bg-gray-800 overflow-hidden relative h-full w-full rounded-md font-sans">
-          <img class="card__image transform absolute h-full w-full inset-0 transform scale-110" src="${card.image}" alt="${card.title}" />
-          <div class="card__details absolute inset-0 pt-52 flex items-center justify-center flex-col">
-            <div class="card__type text-gray-300 top-0 uppercase text-xs p-0 w-full text-center">${card.type}</div>
-            <h2 class="card__title p-2 text-white font-black text-xl text-center w-full pb-12">${card.title}</h2>
-          </div>
+// إنشاء كروت في الصفحة
+cardsData.forEach((card, index) => {
+  const li = document.createElement('li');
+  li.className = 'gallery__card card w-56 h-72 flex-shrink-0';
+  li.innerHTML = `
+    <div class="card__card h-full w-full">
+      <div class="card__content bg-gray-800 overflow-hidden relative h-full w-full rounded-md font-sans">
+        <img class="card__image transform absolute h-full w-full inset-0 transform scale-110" src="${card.image}" alt="${card.title}" />
+        <div class="card__details absolute inset-0 pt-52 flex items-center justify-center flex-col">
+          <div class="card__type text-gray-300 top-0 uppercase text-xs p-0 w-full text-center">${card.type}</div>
+          <h2 class="card__title p-2 text-white font-black text-xl text-center w-full pb-12">${card.title}</h2>
         </div>
-        <div class="card__overlay z-50 absolute h-full w-full inset-0"></div>
       </div>
-      <div class="card__reflection absolute h-full w-full top-8 left-0 rounded-md overflow-hidden" aria-hidden="true">
-        <div class="card__content bg-gray-800 overflow-hidden relative h-full w-full rounded-md font-sans">
-          <img class="card__image transform absolute h-full w-full inset-0 transform scale-110" src="${card.image}" alt="${card.title}" />
-          <div class="card__details absolute inset-0 pt-52 flex items-center justify-center flex-col">
-            <div class="card__type text-gray-300 top-0 uppercase text-xs p-0 w-full text-center">${card.type}</div>
-            <h2 class="card__title p-2 text-white font-black text-xl text-center w-full pb-12">${card.title}</h2>
-          </div>
-        </div>
-        <div class="card__overlay z-50 absolute h-full w-full inset-0 card__overlay--reflection"></div>
-      </div>
-    </li>
+    </div>
   `;
+  galleryContent.appendChild(li);
+});
+
+// متغيرات لتحريك الكروت
+let currentIndex = 0;
+
+// دالة لتحريك المعرض
+function updateGalleryPosition() {
+  const totalCards = cardsData.length;
+  galleryContent.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+  // تأثير حلقي
+  if (currentIndex >= totalCards) {
+    currentIndex = 0;
+    setTimeout(() => {
+      galleryContent.style.transition = 'none';
+      galleryContent.style.transform = 'translateX(0)';
+      setTimeout(() => galleryContent.style.transition = 'transform 0.5s ease-in-out', 0);
+    }, 500);
+  }
+
+  if (currentIndex < 0) {
+    currentIndex = totalCards - 1;
+    setTimeout(() => {
+      galleryContent.style.transition = 'none';
+      galleryContent.style.transform = `translateX(-${currentIndex * 100}%)`;
+      setTimeout(() => galleryContent.style.transition = 'transform 0.5s ease-in-out', 0);
+    }, 500);
+  }
 }
 
-// إضافة الكروت إلى الصفحة
-cardsData.forEach(card => {
-  galleryContent.innerHTML += createCard(card);
+// إضافة الأحداث للأزرار
+document.getElementById('prevBtn').addEventListener('click', () => {
+  currentIndex--;
+  updateGalleryPosition();
+});
+
+document.getElementById('nextBtn').addEventListener('click', () => {
+  currentIndex++;
+  updateGalleryPosition();
 });

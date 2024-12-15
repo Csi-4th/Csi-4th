@@ -4,140 +4,142 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css">
-  <link rel="stylesheet" href="style.css">
-  <title>الادلة الجنائية المرحلة الرابعة</title>
+  <title>تأثير الكروت</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      position: relative;
-    }
-
-    .fixed-image1 {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 150px;
-      height: auto;
-      z-index: 1;
-    }
-
-    .footer1 {
-      position: fixed;
-      top: 150px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 14px;
-      z-index: 9999;
-      color: #fff;
-    }
-
-    .footer1 a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: bold;
-    }
-
-    .footer1 a:hover {
-      color: #00bfff;
-    }
-
-    .gallery__content {
       display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #1a202c;
+      overflow: hidden;
+    }
+
+    .gallery {
+      position: relative;
+      display: flex;
+      align-items: center;
       gap: 20px;
-      transition: transform 0.5s ease-in-out;
+      perspective: 1000px;
     }
 
     .gallery__card {
-      flex-shrink: 0;
+      position: relative;
+      width: 200px;
+      height: 300px;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.5s, opacity 0.5s;
+      opacity: 0.5;
+    }
+
+    .gallery__card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery__card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), transparent);
+    }
+
+    .gallery__card.active {
+      transform: scale(1.2) translateZ(50px);
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .gallery__actions {
+      position: absolute;
+      bottom: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .gallery__button {
+      background: #ffffff22;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.3s;
+    }
+
+    .gallery__button:hover {
+      background: #ffffff55;
     }
   </style>
 </head>
 <body>
-  <!-- الصورة الثابتة -->
-  <img class="fixed-image1" src="2E75FF1E-079E-4941-9234-FBFF53200837.png" alt="">
-
-  <!-- حقوق النشر -->
-  <div class="footer1">
-    <a href="https://www.instagram.com/mjra_shop?igsh=MTUyY292c3h4ajdr" target="_blank">حقوق النشر © مجرة عراقية 2025</a>
-  </div>
-
-  <!-- معرض الصور -->
-  <div class="gallery w-screen h-screen absolute">
-    <ul class="gallery__content w-screen h-72 transform absolute top-1/2 left-1/2 -translate-y-2/4 -translate-x-2/4">
-      <!-- سيتم إضافة الكروت ديناميكيًا هنا -->
-    </ul>
-    <div class="gallery__actions">
-      <button class="gallery__prev outline-none absolute z-10 rounded-full transition left-8 transform-gpu opacity-50 top-1/2 -translate-y-1/2 hover:opacity-100">
-        <span class="sr-only">Prev</span>
-        <svg class="h-12 w-12 fill-current text-white" viewBox="0 0 256 512" title="Previous">
-          <path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"></path>
-        </svg>
-      </button>
-      <button class="gallery__next outline-none absolute z-10 rounded-full right-8 transform-gpu transition opacity-50 top-1/2 -translate-y-1/2 hover:opacity-100">
-        <span class="sr-only">Next</span>
-        <svg class="h-12 w-12 fill-current text-white" viewBox="0 0 256 512" title="Next">
-          <path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"></path>
-        </svg>
-      </button>
+  <div class="gallery">
+    <!-- الكروت -->
+    <div class="gallery__card">
+      <img src="https://via.placeholder.com/200x300" alt="Card 1">
     </div>
+    <div class="gallery__card">
+      <img src="https://via.placeholder.com/200x300" alt="Card 2">
+    </div>
+    <div class="gallery__card">
+      <img src="https://via.placeholder.com/200x300" alt="Card 3">
+    </div>
+    <div class="gallery__card">
+      <img src="https://via.placeholder.com/200x300" alt="Card 4">
+    </div>
+  </div>
+  <div class="gallery__actions">
+    <button class="gallery__button gallery__prev">&lt;</button>
+    <button class="gallery__button gallery__next">&gt;</button>
   </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // بيانات الكروت
-      const cardsData = [
-        { title: "Card 1", type: "Type 1", image: "https://via.placeholder.com/150" },
-        { title: "Card 2", type: "Type 2", image: "https://via.placeholder.com/150" },
-        { title: "Card 3", type: "Type 3", image: "https://via.placeholder.com/150" },
-        { title: "Card 4", type: "Type 4", image: "https://via.placeholder.com/150" },
-      ];
+      const cards = document.querySelectorAll(".gallery__card");
+      const prevButton = document.querySelector(".gallery__prev");
+      const nextButton = document.querySelector(".gallery__next");
+      let activeIndex = 0;
 
-      // حاوية الكروت
-      const galleryContent = document.querySelector(".gallery__content");
-
-      // وظيفة إضافة الكروت
-      function addCards() {
-        cardsData.forEach((card) => {
-          const cardElement = document.createElement("li");
-          cardElement.className = "gallery__card card w-56 h-72";
-          cardElement.innerHTML = `
-            <div class="card__card h-full w-full">
-              <div class="card__content bg-gray-800 overflow-hidden relative h-full w-full rounded-md">
-                <img class="card__image h-full w-full" src="${card.image}" alt="${card.title}" />
-                <div class="card__details absolute inset-0 flex flex-col justify-end p-4">
-                  <div class="card__type text-gray-300 uppercase text-xs">${card.type}</div>
-                  <h2 class="card__title text-white font-bold text-lg">${card.title}</h2>
-                </div>
-              </div>
-            </div>
-          `;
-          galleryContent.appendChild(cardElement);
+      function updateGallery() {
+        cards.forEach((card, index) => {
+          card.classList.remove("active");
+          const offset = index - activeIndex;
+          card.style.transform = `translateX(${offset * 220}px) scale(${1 - Math.abs(offset) * 0.2})`;
+          card.style.opacity = Math.max(0.5, 1 - Math.abs(offset) * 0.5);
+          if (offset === 0) {
+            card.classList.add("active");
+          }
         });
       }
 
-      // استدعاء وظيفة الإضافة
-      addCards();
-
-      // التحكم في الحركة
-      const prevButton = document.querySelector(".gallery__prev");
-      const nextButton = document.querySelector(".gallery__next");
-      let currentIndex = 0;
-
       prevButton.addEventListener("click", () => {
-        if (currentIndex > 0) {
-          currentIndex--;
-          galleryContent.style.transform = `translateX(-${currentIndex * 240}px)`;
+        if (activeIndex > 0) {
+          activeIndex--;
+          updateGallery();
         }
       });
 
       nextButton.addEventListener("click", () => {
-        if (currentIndex < cardsData.length - 1) {
-          currentIndex++;
-          galleryContent.style.transform = `translateX(-${currentIndex * 240}px)`;
+        if (activeIndex < cards.length - 1) {
+          activeIndex++;
+          updateGallery();
         }
       });
+
+      updateGallery();
     });
   </script>
 </body>

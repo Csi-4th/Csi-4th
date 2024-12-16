@@ -105,6 +105,7 @@ body {
 
 <script>
 
+
 document.addEventListener('DOMContentLoaded', () => {
   // بيانات الكروت
   const cardsData = [
@@ -112,18 +113,18 @@ document.addEventListener('DOMContentLoaded', () => {
       image: 'IMG_1332.jpeg', 
       type1: 'CSI', 
       title1: 'Almohsen', 
-      type2: '', 
-      title2: '' 
+      type2: 'Planner', 
+      title2: 'Mountain' 
     },
     { 
-      image: 'IMG_1332.jpeg', 
+      image: 'IMG_1333.jpeg', 
       type1: 'Adventure', 
       title1: 'Forest', 
       type2: 'Explorer', 
       title2: 'Jungle' 
     },
     { 
-      image: 'IMG_1332.jpeg', 
+      image: 'IMG_1334.jpeg', 
       type1: 'Travel', 
       title1: 'Desert', 
       type2: 'Relax', 
@@ -134,11 +135,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // تحديد عنصر القائمة
   const galleryContent = document.querySelector('.gallery__content');
 
+  // مؤشر الكارت الحالي
+  let currentIndex = 0;
+
   // دالة لإنشاء كارت
   function createCard({ image, type1, title1, type2, title2 }) {
     const li = document.createElement('li');
-    li.className = 'gallery__card card w-56 h-72 absolute';
-
+    li.className = 'gallery__card card w-56 h-72 absolute opacity-0 transition-opacity duration-300';
     li.innerHTML = `
       <div class="card__card h-full w-full">
         <div class="card__content bg-gray-800 overflow-hidden relative h-full w-full rounded-md font-sans">
@@ -165,12 +168,46 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // إنشاء الكروت وإضافتها إلى القائمة
-  cardsData.forEach(cardData => {
+  cardsData.forEach((cardData, index) => {
     const card = createCard(cardData);
     galleryContent.appendChild(card);
+
+    // عرض الكارت الأول فقط
+    if (index === 0) {
+      card.classList.add('opacity-100');
+    }
+  });
+
+  // الكروت داخل القائمة
+  const cards = document.querySelectorAll('.gallery__card');
+
+  // دالة لتحديث عرض الكروت
+  function updateCards() {
+    cards.forEach((card, index) => {
+      card.classList.remove('opacity-100');
+      card.classList.add('opacity-0');
+      if (index === currentIndex) {
+        card.classList.add('opacity-100');
+      }
+    });
+  }
+
+  // أزرار التنقل
+  const prevButton = document.querySelector('.gallery__prev');
+  const nextButton = document.querySelector('.gallery__next');
+
+  // التنقل إلى الكارت السابق
+  prevButton.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+    updateCards();
+  });
+
+  // التنقل إلى الكارت التالي
+  nextButton.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % cards.length;
+    updateCards();
   });
 });
-
 
   
 </script>

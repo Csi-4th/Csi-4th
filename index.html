@@ -112,45 +112,45 @@ body {
 
     { 
       image: 'IMG_1332.jpeg', 
-      type1: 'CSI', 
-      title1: 'Almohsen'
+      type: 'CSI', 
+      title: 'Almohsen'
     },
     { 
       image: 'IMG_1333.jpeg', 
-      type1: 'Adventure', 
-      title1: 'Forest'
+      type: 'Adventure', 
+      title: 'Forest'
     },
     { 
       image: 'IMG_1334.jpeg', 
-      type1: 'Travel', 
-      title1: 'Desert'
+      type: 'Travel', 
+      title: 'Desert'
     },
     { 
       image: 'IMG_1335.jpeg', 
-      type1: 'Dream', 
-      title1: 'Ocean'
+      type: 'Dream', 
+      title: 'Ocean'
     },
 
 
     { 
       image: 'IMG_1332.jpeg', 
-      type1: 'CSI', 
+      type: 'CSI', 
       title1: 'Almohsen2'
     },
     { 
       image: 'IMG_1333.jpeg', 
-      type1: 'Adventure', 
-      title1: 'Forest'
+      type: 'Adventure', 
+      title: 'Forest'
     },
     { 
       image: 'IMG_1334.jpeg', 
-      type1: 'Travel', 
-      title1: 'Desert'
+      type: 'Travel', 
+      title: 'Desert'
     },
     { 
       image: 'IMG_1335.jpeg', 
-      type1: 'Dream', 
-      title1: 'n3om'
+      type: 'Dream', 
+      title: 'n3om'
     }
 
 
@@ -165,7 +165,7 @@ body {
   let currentIndex = 0;
 
   // دالة لإنشاء كارت
-  function createCard({ image, type1, title1, type2, title2 }) {
+  function createCard({ image, type, title }) {
     const li = document.createElement('li');
     li.className = 'gallery__card card w-56 h-72 absolute transition-all duration-300 transform-gpu';
     li.innerHTML = `
@@ -173,8 +173,8 @@ body {
         <div class="card__content bg-gray-800 overflow-hidden relative h-full w-full rounded-md font-sans">
           <img class="card__image transform absolute h-full w-full inset-0 transform scale-110" src="${image}" />
           <div class="card__details absolute inset-0 pt-52 flex items-center justify-center flex-col">
-            <div class="card__type text-gray-300 top-0 uppercase text-xs p-0 w-full text-center">${type1}</div>
-            <h2 class="card__title p-2 text-white font-black text-xl text-center w-full pb-12">${title1}</h2>
+            <div class="card__type text-gray-300 top-0 uppercase text-xs p-0 w-full text-center">${type}</div>
+            <h2 class="card__title p-2 text-white font-black text-xl text-center w-full pb-12">${title}</h2>
           </div>
         </div>
         <div class="card__overlay z-50 absolute h-full w-full inset-0"></div>
@@ -183,8 +183,8 @@ body {
         <div class="card__content bg-gray-800 overflow-hidden relative h-full w-full rounded-md font-sans">
           <img class="card__image transform absolute h-full w-full inset-0 transform scale-110" src="${image}" />
           <div class="card__details absolute inset-0 pt-52 flex items-center justify-center flex-col">
-            <div class="card__type text-gray-300 top-0 uppercase text-xs p-0 w-full text-center">${type1}</div>
-            <h2 class="card__title p-2 text-white font-black text-xl text-center w-full pb-12">${title1}</h2>
+            <div class="card__type text-gray-300 top-0 uppercase text-xs p-0 w-full text-center">${type}</div>
+            <h2 class="card__title p-2 text-white font-black text-xl text-center w-full pb-12">${title}</h2>
           </div>
         </div>
         <div class="card__overlay z-50 absolute h-full w-full inset-0 card__overlay--reflection"></div>

@@ -65,7 +65,8 @@ body {
 
 
 
-   /* تصميم زر التشغيل/الإيقاف */
+
+    /* زر التشغيل/الإيقاف */
 .play-pause-button {
   position: absolute;
   bottom: 20px;
@@ -88,49 +89,40 @@ body {
 }
 
 /* الأيقونة */
-.play-icon {
-  display: block;
-  border-style: solid;
-  border-width: 0 20px 20px 0;
-  border-color: transparent white transparent transparent;
+.play-icon, .pause-icon {
   width: 0;
   height: 0;
+  border-style: solid;
+  display: block;
+}
+
+.play-icon {
+  border-width: 0 20px 20px 0;
+  border-color: transparent white transparent transparent;
   transform: rotate(45deg);
 }
 
 .pause-icon {
-  display: none;
-  width: 16px;
-  height: 16px;
-  background: white;
-  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 18px;
+  height: 18px;
 }
 
-.pause-icon::before,
-.pause-icon::after {
+.pause-icon::before, .pause-icon::after {
   content: '';
-  position: absolute;
-  top: 0;
   width: 6px;
   height: 100%;
-  background: black;
+  background: white;
 }
 
-.pause-icon::before {
-  left: 0;
-}
-
-.pause-icon::after {
-  right: 0;
-}
-
-/* عند التبديل */
+/* عند الإيقاف */
 .play-pause-button.paused .play-icon {
   display: none;
 }
 
-.play-pause-button.paused .pause-icon {
-  display: block;
+.play-pause-button:not(.paused) .pause-icon {
+  display: none;
 }
 
     
@@ -879,7 +871,7 @@ body {
   let isPlaying = true;
   let interval;
 
-  // تحريك الكروت
+  // تحديث موقع الكروت
   function updateCards() {
     cards.forEach((card, index) => {
       const position = (index - currentIndex + cards.length) % cards.length;
@@ -901,7 +893,7 @@ body {
     });
   }
 
-  // الحركة التلقائية
+  // بدء الحركة التلقائية
   function startAutoSlide() {
     interval = setInterval(() => {
       currentIndex = (currentIndex + 1) % cards.length;
@@ -909,11 +901,12 @@ body {
     }, 3000);
   }
 
+  // إيقاف الحركة التلقائية
   function stopAutoSlide() {
     clearInterval(interval);
   }
 
-  // تبديل التشغيل/الإيقاف
+  // تشغيل/إيقاف الزر
   playPauseButton.addEventListener('click', () => {
     if (isPlaying) {
       stopAutoSlide();
@@ -925,7 +918,26 @@ body {
     isPlaying = !isPlaying;
   });
 
-  // بدء الحركة التلقائية
+  // التبديل اليدوي بين الكروت (حركة مستقلة)
+  document.querySelector('.gallery__prev').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+    updateCards();
+    if (isPlaying) {
+      stopAutoSlide();
+      startAutoSlide();
+    }
+  });
+
+  document.querySelector('.gallery__next').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % cards.length;
+    updateCards();
+    if (isPlaying) {
+      stopAutoSlide();
+      startAutoSlide();
+    }
+  });
+
+  // تشغيل الحركة التلقائية عند بدء الصفحة
   startAutoSlide();
 });
 

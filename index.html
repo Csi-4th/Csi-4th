@@ -963,13 +963,35 @@ body {
 
 
 
-  const mediaQuery = window.matchMedia("(orientation: portrait)");
+  
+
+
+
+
+
+  // نتابع التغييرات بين الوضعين باستخدام matchMedia
+const mediaQuery = window.matchMedia("(orientation: portrait)");
+
+// إضافة مستمع الحدث عند تغيير الاتجاه
+mediaQuery.addListener(function(e) {
+  if (e.matches) {
+    // الوضع العمودي (portrait)
+    console.log('الوضع العمودي');
+    // هنا يمكنك إضافة أي منطق أو تغييرات قد تحتاجها عند التبديل إلى الوضع العمودي
+  } else {
+    // الوضع الأفقي (landscape)
+    console.log('الوضع الأفقي');
+    // هنا يمكنك إضافة أي منطق أو تغييرات قد تحتاجها عند التبديل إلى الوضع الأفقي
+  }
+});
+
+// يمكنك أيضًا التحقق من الوضع الحالي مباشرة عند تحميل الصفحة
 if (mediaQuery.matches) {
-  // التعامل مع الوضع العمودي
-  console.log('Portrait mode');
+  // الوضع العمودي عند تحميل الصفحة
+  console.log('الوضع العمودي عند تحميل الصفحة');
 } else {
-  // التعامل مع الوضع الأفقي
-  console.log('Landscape mode');
+  // الوضع الأفقي عند تحميل الصفحة
+  console.log('الوضع الأفقي عند تحميل الصفحة');
 }
 
   

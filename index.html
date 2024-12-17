@@ -62,6 +62,78 @@ body {
                0 0 20px rgba(0, 0, 0, 0.6),
                0 0 30px rgba(0, 0, 0, 0.4); /* ظل ضبابي أسود */
 }
+
+
+
+   /* تصميم زر التشغيل/الإيقاف */
+.play-pause-button {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.play-pause-button:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* الأيقونة */
+.play-icon {
+  display: block;
+  border-style: solid;
+  border-width: 0 20px 20px 0;
+  border-color: transparent white transparent transparent;
+  width: 0;
+  height: 0;
+  transform: rotate(45deg);
+}
+
+.pause-icon {
+  display: none;
+  width: 16px;
+  height: 16px;
+  background: white;
+  position: relative;
+}
+
+.pause-icon::before,
+.pause-icon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background: black;
+}
+
+.pause-icon::before {
+  left: 0;
+}
+
+.pause-icon::after {
+  right: 0;
+}
+
+/* عند التبديل */
+.play-pause-button.paused .play-icon {
+  display: none;
+}
+
+.play-pause-button.paused .pause-icon {
+  display: block;
+}
+
+    
     
 
     
@@ -117,6 +189,15 @@ body {
       </button>
     </div>
   </div>
+
+
+
+   <!-- زر تشغيل/إيقاف -->
+  <button class="play-pause-button" id="playPauseButton">
+    <span class="play-icon"></span>
+    <span class="pause-icon"></span>
+  </button>
+</div>
 
 
 
@@ -776,6 +857,81 @@ body {
   // التحديث الأولي
   updateCards();
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+  const gallery = document.querySelector('.gallery__content');
+  const cards = Array.from(gallery.children);
+  const playPauseButton = document.getElementById('playPauseButton');
+  let currentIndex = 0;
+  let isPlaying = true;
+  let interval;
+
+  // تحريك الكروت
+  function updateCards() {
+    cards.forEach((card, index) => {
+      const position = (index - currentIndex + cards.length) % cards.length;
+
+      if (position === 0) {
+        card.style.transform = 'translateX(0) scale(1)';
+        card.style.zIndex = 10;
+        card.style.opacity = 1;
+      } else if (position === 1 || position === cards.length - 1) {
+        const offset = position === 1 ? '100%' : '-100%';
+        card.style.transform = `translateX(${offset}) scale(0.8)`;
+        card.style.zIndex = 5;
+        card.style.opacity = 0.5;
+      } else {
+        card.style.transform = 'translateX(200%) scale(0.6)';
+        card.style.zIndex = 1;
+        card.style.opacity = 0;
+      }
+    });
+  }
+
+  // الحركة التلقائية
+  function startAutoSlide() {
+    interval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % cards.length;
+      updateCards();
+    }, 3000);
+  }
+
+  function stopAutoSlide() {
+    clearInterval(interval);
+  }
+
+  // تبديل التشغيل/الإيقاف
+  playPauseButton.addEventListener('click', () => {
+    if (isPlaying) {
+      stopAutoSlide();
+      playPauseButton.classList.add('paused');
+    } else {
+      startAutoSlide();
+      playPauseButton.classList.remove('paused');
+    }
+    isPlaying = !isPlaying;
+  });
+
+  // بدء الحركة التلقائية
+  startAutoSlide();
+});
+
+
+
+  
 
   
 </script>

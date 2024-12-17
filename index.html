@@ -81,7 +81,8 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.3s;
+  z-index: 20; /* ضمان أن الزر فوق الكروت */
 }
 
 .play-pause-button:hover {
@@ -899,6 +900,15 @@ body {
         card.style.opacity = 0;
       }
     });
+
+    // ضمان ثبات الزر أثناء التنقل اليدوي
+    fixPlayPauseButtonPosition();
+  }
+
+  // ضمان موقع الزر ثابت في منتصف الصفحة
+  function fixPlayPauseButtonPosition() {
+    playPauseButton.style.transform = 'translateX(-50%)'; // إبقاء الزر في منتصف الشاشة
+    playPauseButton.style.transition = 'none'; // منع تأثير الانتقالات عليه
   }
 
   // بدء الحركة التلقائية

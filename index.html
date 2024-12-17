@@ -969,31 +969,58 @@ body {
 
 
 
-  // نتابع التغييرات بين الوضعين باستخدام matchMedia
-const mediaQuery = window.matchMedia("(orientation: portrait)");
 
-// إضافة مستمع الحدث عند تغيير الاتجاه
-mediaQuery.addListener(function(e) {
-  if (e.matches) {
-    // الوضع العمودي (portrait)
-    console.log('الوضع العمودي');
-    // هنا يمكنك إضافة أي منطق أو تغييرات قد تحتاجها عند التبديل إلى الوضع العمودي
-  } else {
-    // الوضع الأفقي (landscape)
-    console.log('الوضع الأفقي');
-    // هنا يمكنك إضافة أي منطق أو تغييرات قد تحتاجها عند التبديل إلى الوضع الأفقي
-  }
+
+
+
+
+
+
+
+  
+window.addEventListener('resize', function() {
+    // لا تقم بإعادة تحميل الصفحة
+    if (window.innerWidth === window.outerWidth) {
+        return; // تجنب إعادة تحميل الصفحة إذا كان هناك تغييرات عرضية غير مهمة
+    }
+    // إذا كان هناك تغيير حقيقي في الحجم، قم بتنفيذ الكود المطلوب
+    if (window.innerWidth > window.innerHeight) {
+        console.log("الوضع الأفقي");
+        // قم بإجراء أي تغييرات لازمة للعرض الأفقي
+    } else {
+        console.log("الوضع العمودي");
+        // قم بإجراء أي تغييرات لازمة للعرض العمودي
+    }
 });
 
-// يمكنك أيضًا التحقق من الوضع الحالي مباشرة عند تحميل الصفحة
-if (mediaQuery.matches) {
-  // الوضع العمودي عند تحميل الصفحة
-  console.log('الوضع العمودي عند تحميل الصفحة');
-} else {
-  // الوضع الأفقي عند تحميل الصفحة
-  console.log('الوضع الأفقي عند تحميل الصفحة');
-}
+// أيضًا، إذا كنت بحاجة إلى التعامل مع تغيير الاتجاه (الجهاز يتحول من عمودي إلى أفقي أو العكس):
+window.addEventListener('orientationchange', function() {
+    if (window.orientation === 0) {
+        console.log("الوضع العمودي");
+    } else if (window.orientation === 90 || window.orientation === -90) {
+        console.log("الوضع الأفقي");
+    }
+});
 
+
+
+
+
+
+const mediaQuery = window.matchMedia("(orientation: landscape)");
+
+mediaQuery.addListener(function(e) {
+    if (e.matches) {
+        console.log("الوضع الأفقي");
+    } else {
+        console.log("الوضع العمودي");
+    }
+});
+
+
+
+
+  
   
 </script>
 

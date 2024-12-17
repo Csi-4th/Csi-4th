@@ -954,7 +954,23 @@ body {
 
 
 
-  
+
+
+
+
+
+
+
+
+
+  const mediaQuery = window.matchMedia("(orientation: portrait)");
+if (mediaQuery.matches) {
+  // التعامل مع الوضع العمودي
+  console.log('Portrait mode');
+} else {
+  // التعامل مع الوضع الأفقي
+  console.log('Landscape mode');
+}
 
   
 </script>

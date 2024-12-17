@@ -66,7 +66,7 @@ body {
 
 
 
-    /* زر التشغيل/الإيقاف */
+/* زر التشغيل/الإيقاف */
 .play-pause-button {
   position: absolute;
   bottom: 20px;
@@ -89,31 +89,37 @@ body {
 }
 
 /* الأيقونة */
-.play-icon, .pause-icon {
+.play-icon,
+.pause-icon {
   width: 0;
   height: 0;
   border-style: solid;
   display: block;
 }
 
+/* مثلث التشغيل */
 .play-icon {
-  border-width: 0 20px 20px 0;
-  border-color: transparent white transparent transparent;
-  transform: rotate(45deg);
+  border-width: 12px 0 12px 18px; /* عرض المثلث */
+  border-color: transparent transparent transparent white;
+  transform: translateX(2px); /* محاذاة بسيطة */
 }
 
+/* أيقونة الإيقاف */
 .pause-icon {
-  display: flex;
-  justify-content: space-between;
   width: 18px;
   height: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.pause-icon::before, .pause-icon::after {
+.pause-icon::before,
+.pause-icon::after {
   content: '';
   width: 6px;
   height: 100%;
   background: white;
+  display: block;
 }
 
 /* عند الإيقاف */
@@ -863,6 +869,8 @@ body {
 
 
 
+
+
   document.addEventListener('DOMContentLoaded', () => {
   const gallery = document.querySelector('.gallery__content');
   const cards = Array.from(gallery.children);
@@ -871,7 +879,7 @@ body {
   let isPlaying = true;
   let interval;
 
-  // تحديث موقع الكروت
+  // دالة لتحديث الكروت
   function updateCards() {
     cards.forEach((card, index) => {
       const position = (index - currentIndex + cards.length) % cards.length;
@@ -906,7 +914,7 @@ body {
     clearInterval(interval);
   }
 
-  // تشغيل/إيقاف الزر
+  // التعامل مع زر التشغيل/الإيقاف
   playPauseButton.addEventListener('click', () => {
     if (isPlaying) {
       stopAutoSlide();
@@ -918,7 +926,7 @@ body {
     isPlaying = !isPlaying;
   });
 
-  // التبديل اليدوي بين الكروت (حركة مستقلة)
+  // التعامل مع أزرار السابق/التالي
   document.querySelector('.gallery__prev').addEventListener('click', () => {
     currentIndex = (currentIndex - 1 + cards.length) % cards.length;
     updateCards();
@@ -939,6 +947,7 @@ body {
 
   // تشغيل الحركة التلقائية عند بدء الصفحة
   startAutoSlide();
+  updateCards(); // تحديث أولي للكروت
 });
 
 

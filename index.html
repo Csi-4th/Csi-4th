@@ -244,6 +244,48 @@ body {
 /.hidden {
   display: none;
 }
+
+
+
+
+
+
+    /* تصميم مستطيل لكل حساب */
+.info-card__account {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: rgba(255, 255, 255, 0.1); /* لون خلفية شفاف */
+  border-radius: 12px; /* حواف مستديرة */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+/* تغيير اللون عند التمرير */
+.info-card__account:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* أيقونة الإنستغرام */
+.info-card__icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  filter: invert(100%); /* جعل الأيقونة بيضاء */
+}
+
+/* تصميم الروابط */
+.info-card__link {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.info-card__link:hover {
+  text-decoration: underline;
+}
     
     
 
@@ -271,9 +313,18 @@ body {
 <div id="infoCard" class="info-card hidden">
   <div class="info-card__content">
     <h2 class="info-card__title">مرحبًا!</h2>
-    <p class="info-card__text">تابعني على إنستغرام</p>
-    <a href="https://www.instagram.com/almohsen.o_o/profilecard/?igsh=MW4wczNxejN4ZXdsdA==" target="_blank" class="info-card__link">@almohsen.o_o</a>
-    <a href="https://www.instagram.com/almohsen.o_o/profilecard/?igsh=MW4wczNxejN4ZXdsdA==" target="_blank" class="info-card__link">@مجرة عراقية</a>
+    <div class="info-card__accounts">
+      <!-- الحساب الأول -->
+      <div class="info-card__account">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="info-card__icon" />
+        <a href="https://www.instagram.com/almohsen.o_o/" target="_blank" class="info-card__link">almohsen.o_o</a>
+      </div>
+      <!-- الحساب الثاني -->
+      <div class="info-card__account">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="info-card__icon" />
+        <a href="https://www.instagram.com/mjra_shop/" target="_blank" class="info-card__link">مجرة عراقية</a>
+      </div>
+    </div>
     <button id="closeCard" class="info-card__close">X</button>
   </div>
 </div>

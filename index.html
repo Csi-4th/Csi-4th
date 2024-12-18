@@ -133,6 +133,118 @@ body {
   display: none;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* زر المعلومات */
+.info-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.7);
+  color: black;
+  border: 2px solid #000;
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.info-button:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.1);
+}
+
+/* البطاقة */
+.info-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.info-card__content {
+  text-align: center;
+}
+
+.info-card__title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.info-card__text {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.info-card__link {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.info-card__link:hover {
+  text-decoration: underline;
+}
+
+/* زر الإغلاق */
+.info-card__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.info-card__close:hover {
+  color: red;
+}
+
+/* إظهار البطاقة */
+.info-card.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.hidden {
+  display: none;
+}
     
     
 
@@ -149,6 +261,24 @@ body {
   
 
 <body>
+
+
+  
+
+<div id="infoButton" class="info-button">!</div>
+
+<div id="infoCard" class="info-card hidden">
+  <div class="info-card__content">
+    <h2 class="info-card__title">مرحبًا!</h2>
+    <p class="info-card__text">تابعني على إنستغرام:</p>
+    <a href="https://www.instagram.com/almohsen.o_o/profilecard/?igsh=MW4wczNxejN4ZXdsdA==" target="_blank" class="info-card__link">@almohsen.o_o</a>
+    <button id="closeCard" class="info-card__close">X</button>
+  </div>
+</div>
+
+
+
+  
 
 
 
@@ -1017,6 +1147,44 @@ mediaQuery.addListener(function(e) {
     }
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const infoButton = document.getElementById('infoButton');
+  const infoCard = document.getElementById('infoCard');
+  const closeCard = document.getElementById('closeCard');
+
+  // عند الضغط على زر المعلومات
+  infoButton.addEventListener('click', () => {
+    infoCard.classList.toggle('visible');
+  });
+
+  // عند الضغط على زر الإغلاق
+  closeCard.addEventListener('click', () => {
+    infoCard.classList.remove('visible');
+  });
+
+  // إغلاق البطاقة عند الضغط خارجها
+  window.addEventListener('click', (e) => {
+    if (e.target === infoCard) {
+      infoCard.classList.remove('visible');
+    }
+  });
+});
 
 
 

@@ -250,7 +250,7 @@ body {
 
 
 
-  /* تصميم مستطيل لكل حساب */
+/* تصميم مستطيل لكل حساب */
 .info-card__account {
   display: flex;
   align-items: center;
@@ -269,18 +269,42 @@ body {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* أيقونة الإنستغرام */
+/* أيقونة الإنستغرام (وضع داكن) */
 .info-card__icon {
   width: 24px;
   height: 24px;
   margin-right: 10px;
-  filter: invert(100%); /* جعل الأيقونة بيضاء */
+  filter: invert(100%); /* جعل الأيقونة بيضاء في الوضع العادي */
 }
 
 /* تصميم النص */
 .info-card__link {
   font-size: 16px;
   font-weight: bold;
+  color: white; /* لون النص أبيض */
+}
+
+/* أزرار الإغلاق */
+.info-card__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.2); /* خلفية شفافة */
+  border: none;
+  color: white; /* لون النص أبيض */
+  font-size: 16px;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.info-card__close:hover {
+  background: rgba(255, 255, 255, 0.4);
 }
     
     
@@ -312,12 +336,12 @@ body {
     <div class="info-card__accounts">
       <!-- الحساب الأول -->
       <a href="https://www.instagram.com/almohsen.o_o/" target="_blank" class="info-card__account">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="info-card__icon" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022_dark.png" alt="Instagram" class="info-card__icon" />
         <span class="info-card__link">@almohsen.o_o</span>
       </a>
       <!-- الحساب الثاني -->
       <a href="https://www.instagram.com/mjra_shop/" target="_blank" class="info-card__account">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="info-card__icon" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022_dark.png" alt="Instagram" class="info-card__icon" />
         <span class="info-card__link">@مجرة عراقية</span>
       </a>
     </div>

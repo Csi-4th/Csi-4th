@@ -148,14 +148,14 @@ body {
 
 
 
-    /* زر المعلومات */
+ /* زر المعلومات */
 .info-button {
   position: fixed;
   top: 20px;
   right: 20px;
   width: 50px;
   height: 50px;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.3); /* شفافية أعلى */
   color: black;
   border: 2px solid #000;
   border-radius: 50%;
@@ -164,14 +164,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   z-index: 1000;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
 }
 
 .info-button:hover {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.5); /* تأثير شفافية عند التمرير */
   transform: scale(1.1);
 }
 
@@ -265,13 +265,15 @@ body {
 
   
 
+<!-- زر المعلومات -->
 <div id="infoButton" class="info-button">!</div>
 
+<!-- البطاقة -->
 <div id="infoCard" class="info-card hidden">
   <div class="info-card__content">
     <h2 class="info-card__title">مرحبًا!</h2>
     <p class="info-card__text">تابعني على إنستغرام:</p>
-    <a href="https://www.instagram.com/almohsen.o_o/profilecard/?igsh=MW4wczNxejN4ZXdsdA==" target="_blank" class="info-card__link">@almohsen.o_o</a>
+    <a href="https://www.instagram.com/اسم_حسابك/" target="_blank" class="info-card__link">@اسم_حسابك</a>
     <button id="closeCard" class="info-card__close">X</button>
   </div>
 </div>
@@ -1168,21 +1170,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const infoCard = document.getElementById('infoCard');
   const closeCard = document.getElementById('closeCard');
 
-  // عند الضغط على زر المعلومات
+  // عند الضغط على الزر لإظهار البطاقة
   infoButton.addEventListener('click', () => {
-    infoCard.classList.toggle('visible');
+    infoCard.classList.add('visible');
+    infoCard.classList.remove('hidden');
   });
 
-  // عند الضغط على زر الإغلاق
+  // عند الضغط على زر الإغلاق لإخفاء البطاقة
   closeCard.addEventListener('click', () => {
     infoCard.classList.remove('visible');
-  });
-
-  // إغلاق البطاقة عند الضغط خارجها
-  window.addEventListener('click', (e) => {
-    if (e.target === infoCard) {
-      infoCard.classList.remove('visible');
-    }
+    infoCard.classList.add('hidden');
   });
 });
 

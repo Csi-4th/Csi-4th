@@ -250,7 +250,7 @@ body {
 
 
 
-    /* تصميم مستطيل لكل حساب */
+  /* تصميم مستطيل لكل حساب */
 .info-card__account {
   display: flex;
   align-items: center;
@@ -260,6 +260,8 @@ body {
   border-radius: 12px; /* حواف مستديرة */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
+  text-decoration: none; /* إزالة التسطير */
+  color: white; /* لون النص */
 }
 
 /* تغيير اللون عند التمرير */
@@ -275,16 +277,10 @@ body {
   filter: invert(100%); /* جعل الأيقونة بيضاء */
 }
 
-/* تصميم الروابط */
+/* تصميم النص */
 .info-card__link {
-  color: white;
-  text-decoration: none;
   font-size: 16px;
   font-weight: bold;
-}
-
-.info-card__link:hover {
-  text-decoration: underline;
 }
     
     
@@ -315,15 +311,15 @@ body {
     <h2 class="info-card__title">مرحبًا!</h2>
     <div class="info-card__accounts">
       <!-- الحساب الأول -->
-      <div class="info-card__account">
+      <a href="https://www.instagram.com/almohsen.o_o/" target="_blank" class="info-card__account">
         <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="info-card__icon" />
-        <a href="https://www.instagram.com/almohsen.o_o/" target="_blank" class="info-card__link">almohsen.o_o</a>
-      </div>
+        <span class="info-card__link">@almohsen.o_o</span>
+      </a>
       <!-- الحساب الثاني -->
-      <div class="info-card__account">
+      <a href="https://www.instagram.com/mjra_shop/" target="_blank" class="info-card__account">
         <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="info-card__icon" />
-        <a href="https://www.instagram.com/mjra_shop/" target="_blank" class="info-card__link">مجرة عراقية</a>
-      </div>
+        <span class="info-card__link">@مجرة عراقية</span>
+      </a>
     </div>
     <button id="closeCard" class="info-card__close">X</button>
   </div>

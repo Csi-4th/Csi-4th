@@ -148,7 +148,7 @@ body {
 
 
 
- /* زر المعلومات */
+/* زر المعلومات */
 .info-button {
   position: fixed;
   top: 20px;
@@ -183,7 +183,7 @@ body {
   transform: translate(-50%, -50%);
   width: 300px;
   padding: 20px;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.7); /* لون شفاف يتناسب مع الخلفية */
   border-radius: 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   z-index: 1001;
@@ -194,22 +194,21 @@ body {
 
 .info-card__content {
   text-align: center;
+  color: white;
 }
 
 .info-card__title {
   font-size: 24px;
   margin-bottom: 10px;
-  color: #333;
 }
 
 .info-card__text {
   font-size: 16px;
   margin-bottom: 10px;
-  color: #555;
 }
 
 .info-card__link {
-  color: #007bff;
+  color: #4caf50; /* لون رابط مميز */
   text-decoration: none;
   font-size: 16px;
 }
@@ -228,7 +227,7 @@ body {
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
-  color: #333;
+  color: white;
   transition: color 0.3s ease;
 }
 
@@ -242,7 +241,7 @@ body {
   visibility: visible;
 }
 
-.hidden {
+/.hidden {
   display: none;
 }
     
@@ -272,8 +271,9 @@ body {
 <div id="infoCard" class="info-card hidden">
   <div class="info-card__content">
     <h2 class="info-card__title">مرحبًا!</h2>
-    <p class="info-card__text">تابعني على إنستغرام:</p>
-    <a href="https://www.instagram.com/اسم_حسابك/" target="_blank" class="info-card__link">@اسم_حسابك</a>
+    <p class="info-card__text">تابعني على إنستغرام</p>
+    <a href="https://www.instagram.com/almohsen.o_o/profilecard/?igsh=MW4wczNxejN4ZXdsdA==" target="_blank" class="info-card__link">@almohsen.o_o</a>
+    <a href="https://www.instagram.com/almohsen.o_o/profilecard/?igsh=MW4wczNxejN4ZXdsdA==" target="_blank" class="info-card__link">@مجرة عراقية</a>
     <button id="closeCard" class="info-card__close">X</button>
   </div>
 </div>
@@ -1180,6 +1180,14 @@ document.addEventListener('DOMContentLoaded', () => {
   closeCard.addEventListener('click', () => {
     infoCard.classList.remove('visible');
     infoCard.classList.add('hidden');
+  });
+
+  // إغلاق البطاقة عند الضغط خارجها
+  document.addEventListener('click', (event) => {
+    if (!infoCard.contains(event.target) && !infoButton.contains(event.target)) {
+      infoCard.classList.remove('visible');
+      infoCard.classList.add('hidden');
+    }
   });
 });
 
